@@ -4,6 +4,15 @@ ActiveAdmin.register User do
                 :sessions_remaining, gym_ids: [],
                 gym_attributes: [:id, :name, :_delete]
 
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :sessions_remaining
+  filter :gyms
+  filter :approved
+  filter :admin
+  filter :paid_date
+
   index do
   	selectable_column
   	column :first_name
@@ -13,7 +22,9 @@ ActiveAdmin.register User do
     column :approved
     column :paid_date
     column :sessions_remaining
-  	column :gyms
+  	column "Gyms" do |user|
+      user.gyms.sort.map{ |g| g.name }.join(' ')
+    end
   	actions
   end
 

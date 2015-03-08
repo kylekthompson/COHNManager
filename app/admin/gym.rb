@@ -5,6 +5,9 @@ ActiveAdmin.register Gym do
                 :admin, :paid_date, :approved,
                 :sessions_remaining, :_delete]
 
+  filter :users
+  filter :name
+
   index do
     selectable_column
     column :name

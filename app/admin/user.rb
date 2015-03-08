@@ -18,14 +18,14 @@ ActiveAdmin.register User do
   	column :first_name
   	column :last_name
   	column :email
-  	column :admin
-    column :approved
-    column :paid_date
-    column :sessions_remaining
-  	column "Gyms" do |user|
+    column "Gyms" do |user|
       user.gyms.sort.map{ |g| g.name }.join(' ')
     end
-  	actions
+    column :paid_date
+    column :sessions_remaining
+  	column :approved
+    column :admin
+    actions
   end
 
  	form do |f|
@@ -33,10 +33,10 @@ ActiveAdmin.register User do
     f.input :first_name
  		f.input :last_name
  		f.input :email
-    f.input :approved
+    f.input :gyms, as: :check_boxes
     f.input :paid_date, as: :datepicker, datepicker_options: { min_date: "2015-01-1", max_date: "+20Y" }
     f.input :sessions_remaining
-    f.input :gyms, as: :check_boxes
+    f.input :approved
  		f.input :admin
  		f.actions
  	end

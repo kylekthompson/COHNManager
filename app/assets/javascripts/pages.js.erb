@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	if($(".pages.paid").length > 0){
+	if(($(".pages.paid").length > 0) || ($(".pages.unpaid").length > 0)) {
 		redirectTime = "10000";
 		redirectURL = "<%= Rails.application.routes.url_helpers.root_path %>";
 

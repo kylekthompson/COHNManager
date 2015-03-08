@@ -37,6 +37,6 @@ class User < ActiveRecord::Base
   end
 
   def send_admin_mail
-    AdminMailer.new_user_waiting_for_approval(self).deliver
+    AdminMailer.new_user_waiting_for_approval(self).deliver_now
   end
 end

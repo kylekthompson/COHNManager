@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   validates :first_name, :last_name, presence: true
   
-  has_many :gyms
+  has_and_belongs_to_many :gyms
   accepts_nested_attributes_for :gyms, allow_destroy: true
   
   before_save :set_full_name

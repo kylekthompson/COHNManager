@@ -1,8 +1,8 @@
 ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email,
                 :admin, :paid_date, :approved,
-                :sessions_remaining, 
-                gyms_attributes: [:id, :name, :_destroy]
+                :sessions_remaining, gym_ids: [],
+                gym_attributes: [:id, :name, :_delete]
 
   index do
   	selectable_column
@@ -25,9 +25,7 @@ ActiveAdmin.register User do
     f.input :approved
     f.input :paid_date, as: :datepicker, datepicker_options: { min_date: "2015-01-1", max_date: "+20Y" }
     f.input :sessions_remaining
-    f.has_many :gyms, heading: 'Gyms', allow_destroy: true do |g|
-      g.input :name
-    end
+    f.input :gyms, as: :check_boxes
  		f.input :admin
  		f.actions
  	end

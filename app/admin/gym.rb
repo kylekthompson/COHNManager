@@ -1,5 +1,9 @@
 ActiveAdmin.register Gym do
-  permit_params :name
+  permit_params :name, user_ids: [],
+                user_attributes: [:first_name,
+                :last_name, :email,
+                :admin, :paid_date, :approved,
+                :sessions_remaining, :_delete]
 
   index do
     selectable_column
@@ -10,6 +14,7 @@ ActiveAdmin.register Gym do
 
   form do |f|
     f.input :name
+    f.input :users, as: :check_boxes, allow_delete: true
     f.actions
   end
 end

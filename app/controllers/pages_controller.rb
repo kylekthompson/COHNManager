@@ -7,4 +7,7 @@ class PagesController < ApplicationController
 
   def unpaid
   end
+
+  def location
+  end
 end

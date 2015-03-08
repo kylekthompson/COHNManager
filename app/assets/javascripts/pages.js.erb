@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	if(($(".pages.paid").length > 0) || ($(".pages.unpaid").length > 0)) {
+	if($(".pages.paid").length > 0) {
 		redirectTime = "10000";
 		redirectURL = "<%= Rails.application.routes.url_helpers.root_path %>";
 
@@ -11,5 +11,11 @@ $(document).ready(function(){
 		setTimeout(function () {
 	  	window.location.href = redirectURL;
 		}, redirectTime);
+	}
+	else if(($(".pages.unpaid").length > 0)) {
+		$.ajax({
+	    type: "DELETE",
+	    url: "<%= Rails.application.routes.url_helpers.destroy_user_session_path %>"
+		});
 	}
 });

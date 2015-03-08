@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'paid' => 'pages#paid'
   get 'unpaid' => 'pages#unpaid'
+  get 'pay' => redirect("http://www.teambssfitness.com/join-us/")
 end

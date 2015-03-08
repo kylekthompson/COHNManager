@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def paid
   end
+
+  def unpaid
+  end
 end

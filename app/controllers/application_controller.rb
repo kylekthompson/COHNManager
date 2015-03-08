@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
 			end
 		else
 			root_path
-		end	
+		end
 	end
 end

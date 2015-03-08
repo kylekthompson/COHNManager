@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
   validates :first_name, :last_name, presence: true
-  has_and_belongs_to_many :gyms, :join_table => :gyms_users
+  
+  has_many :gyms
+  accepts_nested_attributes_for :gyms, allow_destroy: true
+  
   before_save :set_full_name
   # after_create :send_admin_mail
 

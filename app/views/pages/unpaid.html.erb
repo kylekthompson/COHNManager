@@ -1,2 +1,9 @@
-<h1>You're not paid.. uncool!</h1>
-<p>Please <%= link_to 'see a staff member', new_user_session_path %>, or <%= link_to 'pay now', pay_path, class: "pay-link",target: "_blank" %></p>
+<div class="jumbotron indextron">
+	<h1 class="text-center">You're not paid.. uncool!</h1>
+	<p class="lead text-center">
+	   Please either see a staff member or pay now.
+	</p>
+	<div class="text-center">
+		<%= link_to 'Pay Now', pay_path, class: "btn btn-primary", target: "_blank" %>
+	</div>
+</div>

@@ -10,7 +10,50 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require formtastic
- *= require my_formtastic_changes
  *= require_self
  */
+
+@import "formtastic";
+@import "pages";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.buttons {
+	padding-bottom: 55px;
+}
+
+.indextron {
+	margin-top: 40px;
+}
+
+.radio-buttons {
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+/* User sign in and sign forms. */
+.border-form-div {
+  max-width: 600px;
+  padding: 19px 29px 29px;
+  margin: 40px auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}

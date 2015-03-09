@@ -8,6 +8,7 @@ ActiveAdmin.register Login do
     end
     column :was_approved
     column :was_paid
+    column :was_correct_gym
   end
 
   csv do
@@ -22,6 +23,7 @@ ActiveAdmin.register Login do
     end
     column :was_approved
     column :was_paid
+    column :was_correct_gym
   end
-
+  
 end

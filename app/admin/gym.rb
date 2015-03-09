@@ -11,7 +11,9 @@ ActiveAdmin.register Gym do
   index do
     selectable_column
     column :name
-    column :users
+    column "Users" do |gym|
+      gym.users.sort.map{ |u| u.full_name }.join(', ')
+    end
     actions
   end
 
@@ -20,4 +22,5 @@ ActiveAdmin.register Gym do
     f.input :users, as: :check_boxes, allow_delete: true
     f.actions
   end
+
 end

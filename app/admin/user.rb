@@ -19,7 +19,7 @@ ActiveAdmin.register User do
   	column :last_name
   	column :email
     column "Gyms" do |user|
-      user.gyms.sort.map{ |g| g.name }.join(' ')
+      user.gyms.sort.map{ |g| g.name }.join(', ')
     end
     column :paid_date
     column :sessions_remaining
@@ -40,4 +40,5 @@ ActiveAdmin.register User do
  		f.input :admin
  		f.actions
  	end
+
 end

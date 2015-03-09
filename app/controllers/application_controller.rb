@@ -13,14 +13,11 @@ class ApplicationController < ActionController::Base
 		elsif current_user.is_approved?
 			create_login
 			if current_user.is_paid?
-				paid_path
-
-				#current_user.gyms.each do |gym|
-				#	if gym.id == cookies[:gym_id]
-				#		paid_path
-				#	end
-				#end
-				#incorrectgym_path
+				if correct_gym?
+					paid_path
+				else
+					incorrectgym_path
+				end
 			else
 				unpaid_path
 			end
@@ -38,6 +35,18 @@ class ApplicationController < ActionController::Base
 		@login.gym = Gym.find_by(id: cookies[:gym_id])
 		@login.was_approved = current_user.is_approved?
 		@login.was_paid = current_user.is_paid?
+		@login.was_correct_gym = correct_gym?
 		@login.save!
 	end
+
+	def correct_gym?
+    correct = false
+    @gyms = current_user.gyms.all
+    @gyms.each do |gym|
+      if gym == Gym.find_by(id: cookies[:gym_id])
+        correct = true
+      end
+    end
+    correct
+  end
 end

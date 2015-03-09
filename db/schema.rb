@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308231419) do
+ActiveRecord::Schema.define(version: 20150309021233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150308231419) do
     t.datetime "logged_in_at"
     t.boolean  "was_approved"
     t.boolean  "was_paid"
+    t.boolean  "was_correct_gym"
   end
 
   add_index "logins", ["gym_id"], name: "index_logins_on_gym_id", using: :btree

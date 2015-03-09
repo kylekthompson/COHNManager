@@ -1,0 +1,10 @@
+<%= form_tag :action => :setgym do %>
+	
+	<% @gyms.each do |gym| %>
+  	<%= radio_button_tag "gym_id", gym.id %>
+  	<%= label_tag "gym_id[#{gym.id}]", gym.name %><br>
+  <% end %>
+  
+  <%= submit_tag 'Submit' %>
+
+<% end %>

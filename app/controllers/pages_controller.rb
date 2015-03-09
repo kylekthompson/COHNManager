@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :authenticate_admin!, only: [:setgympage, :setgym]
+
   def index
   end
 
@@ -6,9 +8,6 @@ class PagesController < ApplicationController
   end
 
   def unpaid
-  end
-
-  def location
   end
 
   def incorrectgym
@@ -19,7 +18,10 @@ class PagesController < ApplicationController
   end
 
   def setgym
-  	cookies[:gym_id] = params[:gym_id]
+  	cookies[:gym_id] = {
+  		value: params[:gym_id],
+  		expires: 20.years.from_now
+  	}
   	redirect_to admin_root_path
   	flash[:notice] = "Local Gym Set"
   end

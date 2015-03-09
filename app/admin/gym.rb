@@ -23,4 +23,13 @@ ActiveAdmin.register Gym do
     f.actions
   end
 
+  show do
+    attributes_table do
+      row :name
+      row "Users" do |gym|
+        gym.users.sort.map{ |u| u.full_name }.join(', ')
+      end
+    end
+  end
+
 end

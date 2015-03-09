@@ -41,4 +41,19 @@ ActiveAdmin.register User do
  		f.actions
  	end
 
+  show do
+    attributes_table do
+      row :first_name
+      row :last_name
+      row :email
+      row "Gyms" do |user|
+        user.gyms.sort.map{ |g| g.name }.join(', ')
+      end
+      row :paid_date
+      row :sessions_remaining
+      row :approved
+      row :admin
+    end
+  end
+
 end

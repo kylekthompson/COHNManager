@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_in_path_for(resource)
 		if current_user.is_admin?
-			admin_root_path
+			if cookies[:gym_id]
+				admin_root_path
+			else
+				setgympage_path
+			end
 		elsif current_user.is_approved?
 			create_login
 			if current_user.is_paid?

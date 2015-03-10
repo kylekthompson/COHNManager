@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   
   has_and_belongs_to_many :gyms
-  has_many :logins
+  has_many :logins, dependent: :destroy
   accepts_nested_attributes_for :gyms, allow_destroy: true
   
   before_save :set_full_name
-  # after_create :send_admin_mail
+  after_create :send_signup_email
 
   def is_admin?
 	  self.admin
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def send_admin_mail
-    AdminMailer.new_user_waiting_for_approval(self).deliver_now
+  def send_signup_email
+    UserNotifier.send_signup_email(self).deliver_now
   end
 end

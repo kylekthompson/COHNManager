@@ -14,6 +14,7 @@ gem 'animate-rails'
 gem 'bootstrap-sass'
 gem 'activeadmin', github: 'activeadmin'
 gem 'formtastic'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug'

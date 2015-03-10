@@ -6,6 +6,6 @@
   <body>		
     <h1><%= @user.full_name %> is waiting for your approval!</h1>		
     <p>Please login to the admin console to approve <%= @user.first_name %>.</p>
-    <p>To login to the admin console, follow this link: <%= @admin_url %>.</p>
+    <%= render partial: "user_notifier/shared/signature" %>
   </body>		
 </html>

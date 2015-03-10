@@ -12,4 +12,10 @@ class UserNotifier < ApplicationMailer
     @user = user
     mail( :subject => "#{@user.full_name} is waiting for approval!" )
   end
+
+  def send_dues_email(user)
+    @user = user
+    mail( :to => @user.email,
+    :subject => 'Friendly reminder from Team BSS' )
+  end
 end

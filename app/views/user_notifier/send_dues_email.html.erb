@@ -4,8 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up, <%= @user.first_name %>!</h1>
-    <p>After an administrator approves your account, feel free to login with your credentials.</p>
+    <h1>Hi, <%= @user.first_name %>!</h1>		
+    <p>We just wanted to give you a heads up that your dues are due in 5 days.</p>
     <%= render partial: "user_notifier/shared/signature" %>
   </body>
 </html>

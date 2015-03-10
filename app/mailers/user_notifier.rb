@@ -9,7 +9,7 @@ class UserNotifier < ApplicationMailer
   end
 
   def send_user_waiting_for_approval_email(user)
-  	@user = user
-    mail( :subject => '#{@user.full_name} is waiting for approval!' )
+    @user = user
+    mail( :subject => "#{@user.full_name} is waiting for approval!" )
   end
 end

@@ -18,4 +18,3 @@
 
 # Ignore my environment variables!
 /config/local_env.yml
-/config/application.rb

@@ -1,0 +1,11 @@
+<!DOCTYPE html>		
+<html>		
+  <head>		
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />		
+  </head>		
+  <body>		
+    <h1><%= @user.full_name %> is waiting for your approval!</h1>		
+    <p>Please login to the admin console to approve <%= @user.first_name %>.</p>
+    <p>To login to the admin console, follow this link: <%= @admin_url %>.</p>
+  </body>		
+</html>

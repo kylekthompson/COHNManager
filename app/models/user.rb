@@ -43,5 +43,6 @@ class User < ActiveRecord::Base
 
   def send_signup_email
     UserNotifier.send_signup_email(self).deliver_now
+    UserNotifier.send_user_waiting_for_approval_email(self).deliver_now
   end
 end

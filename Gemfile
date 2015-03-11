@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'activeadmin', github: 'activeadmin'
 gem 'formtastic'
 gem 'newrelic_rpm'
+gem 'quiet_assets'
 
 group :development, :test do
   gem 'byebug'

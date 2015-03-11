@@ -41,6 +41,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def after_database_authentication
+    if self.sessions_remaining > 0 && !self.paid_date
+      @sessions = self.sessions_remaining - 1
+      self.update_attributes(sessions_remaining: @sessions)
+    end
+  end
+
   def send_signup_email
     UserNotifier.send_signup_email(self).deliver_now
     UserNotifier.send_user_waiting_for_approval_email(self).deliver_now

@@ -21,6 +21,18 @@ class User < ActiveRecord::Base
     self.approved
   end
 
+  def is_paid_at_login?
+    is_paid = false
+    if self.paid_date
+      is_paid = (self.paid_date.to_date > 1.month.ago) || (self.sessions_remaining > 0)
+    else
+      is_paid = self.sessions_remaining > 0
+      @sessions = self.sessions_remaining - 1
+      self.update_attributes(sessions_remaining: @sessions)
+    end
+    is_paid
+  end
+
   def is_paid?
     if self.paid_date
       (self.paid_date.to_date > 1.month.ago) || (self.sessions_remaining > 0)
@@ -42,13 +54,6 @@ class User < ActiveRecord::Base
       :not_approved 
     else 
       super
-    end
-  end
-
-  def after_database_authentication
-    if self.sessions_remaining > 0 && !self.paid_date
-      @sessions = self.sessions_remaining - 1
-      self.update_attributes(sessions_remaining: @sessions)
     end
   end
 

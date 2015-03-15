@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
 				setgympage_path
 			end
 		elsif current_user.is_approved?
-			create_login
-			if current_user.is_paid?
+			if current_user.is_paid_at_login?
+				create_login
 				if correct_gym?
 					paid_path
 				else

@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: db/development
+  database: db/teambssmanager_development
 
 test:
   <<: *default
-  database: db/test
+  database: db/teambssmanager_test
 
 production:
   <<: *default

@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
   end
 
   def is_paid?
-    (self.paid_date.to_date > 1.month.ago) || (self.sessions_remaining > 0)
+    if self.paid_date
+      (self.paid_date.to_date > 1.month.ago) || (self.sessions_remaining > 0)
+    else
+      self.sessions_remaining > 0
+    end
   end
 
 	def set_full_name

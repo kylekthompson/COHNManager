@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
   ActiveAdmin.routes(self)
   root 'pages#index'
   get 'paid' => 'pages#paid'

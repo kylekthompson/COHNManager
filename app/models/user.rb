@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   validates :first_name, :last_name, :email, presence: true
-  
+
   has_and_belongs_to_many :gyms
   has_many :logins, dependent: :destroy
   accepts_nested_attributes_for :gyms, allow_destroy: true
@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     else 
       super
     end
+  end
+
+  def agreed_to_waiver?
+    self.agreed_to_waiver
   end
 
   def send_signup_email

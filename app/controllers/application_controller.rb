@@ -11,25 +11,31 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-		if current_user.is_admin?
-			if cookies[:gym_id]
-				admin_root_path
-			else
-				setgympage_path
-			end
-		elsif current_user.is_approved?
-			if correct_gym?
-				if current_user.is_paid_at_login?
-					paid_path
+		if current_user.agreed_to_waiver?
+			if current_user.is_admin?
+				if cookies[:gym_id]
+					admin_root_path
 				else
-					unpaid_path
+					setgympage_path
+				end
+			elsif current_user.is_approved?
+				if correct_gym?
+					if current_user.is_paid_at_login?
+						paid_path
+					else
+						unpaid_path
+					end
+				else
+					incorrectgym_path
 				end
 			else
-				incorrectgym_path
+				create_login
+				root_path
 			end
-		else
-			create_login
-			root_path
+		else 
+			sign_out current_user
+			flash[:alert] = "You must accept the agreement."
+			new_user_session_path
 		end
 	end
 

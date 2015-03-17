@@ -2,26 +2,40 @@
   <h2 class="text-center">Sign in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-  <div class="form-group">
-      <%= f.label :email, class: "control-label text-left" %>
-      <%= f.email_field :email, autofocus: true , class: "form-control" %>
-  </div>
+    <%= flash_messages %>
 
-  <div class="form-group">
-      <%= f.label :password, class: "control-label text-left" %>
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-  </div>
+    <div class="form-group">
+        <%= f.label :email, class: "control-label text-left" %>
+        <%= f.email_field :email, autofocus: true , class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-      <%= f.submit "Sign in", class: 'btn btn-primary center-block' %>
-  </div>
+    <div class="form-group">
+        <%= f.label :password, class: "control-label text-left" %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
 
-  <!--
-  <div class="form-group">
-      <div class="col-sm-6 col-sm-offset-2">
-          <%= render "devise/shared/links" %>
-      </div>
-  </div>
-  -->
+    <div class="form-group text-center">
+        <%= f.check_box :agreed_to_waiver %>
+        <%= f.label :agreed_to_waiver, 'I have read and fully understand ', autocomplete: "off", class: "control-label" %>
+        <a class="show_hide">the agreement</a>.
+    </div>
+
+    <div class="waiver" style="display:none">
+      <p>
+        I have enrolled in a program of strenuous physical activity including but not limited to, a variety of group exercise classes, weight training, stationary bicycling and various aerobic conditioning machinery offered by “TEAM BSS”.  I hereby affirm that I am in good physical condition and do not suffer from any disability which would prevent or limit my participation in this exercise program.  In consideration of my participation in a “TEAM BSS” exercise program, I, for myself, my heirs and assigns, hereby release “TEAM BSS” (its employees and owners), from any claims, demands, and causes of action, now or in the future, arising from my participation in the exercise program.  I fully understand that I may injure myself as a result of my participation in “TEAM BSS” exercise programs including, but not limited to miscarriage, heart attack, muscle strains, pulls, or tears, broken bones, shin splints, heat prostration, knee, lower-back, and foot injuries and any other illness, soreness, or injury however caused occurring, during or after my participation in the exercise program. It is recommended that you consult with your physician prior to beginning any exercise program offered by “TEAM BSS” and/or any of its affiliates.
+      </p>
+    </div>
+
+    <div class="form-group">
+        <%= f.submit "Sign in", class: 'btn btn-primary center-block' %>
+    </div>
+
+    <!--
+    <div class="form-group">
+        <div class="col-sm-6 col-sm-offset-2">
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+    -->
   <% end %>
-  </div>
+</div>

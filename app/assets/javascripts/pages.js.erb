@@ -38,4 +38,9 @@ $(document).ready(function(){
 	  	window.location.href = redirectURL;
 		}, redirectTime);
 	}
+	else if(($(".sessions.new").length > 0)) {
+		$('.show_hide').click(function() {
+		  $('.waiver').toggle();
+		});
+	}
 });

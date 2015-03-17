@@ -29,8 +29,13 @@
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= f.submit "Sign up", class: "btn btn-primary center-block" %>
+    <div class="row-fluid buttons">
+      <div class="col-sm-3 col-sm-offset-3">
+        <%= link_to 'Back', root_path, class: 'btn btn-primary btn-block' %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+      </div>
     </div>
     
   <% end %>

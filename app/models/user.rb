@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
   end
 
 	def adjust_user
-		self.first_name = self.first_name.titleize
-    self.last_name = self.last_name.titleize
+    self.first_name = self.first_name.slice(0,1).capitalize + self.first_name.slice(1..-1)
+    self.last_name = self.last_name.slice(0,1).capitalize + self.last_name.slice(1..-1)
     self.full_name = "#{first_name} #{last_name}"
 	end
 

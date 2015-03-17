@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :logins, dependent: :destroy
   accepts_nested_attributes_for :gyms, allow_destroy: true
   
-  before_save :set_full_name
+  before_save :adjust_user
   after_create :send_signup_email
 
   def is_admin?
@@ -47,8 +47,10 @@ class User < ActiveRecord::Base
     end
   end
 
-	def set_full_name
-		self.full_name = "#{first_name} #{last_name}"
+	def adjust_user
+		self.first_name = self.first_name.titleize
+    self.last_name = self.last_name.titleize
+    self.full_name = "#{first_name} #{last_name}"
 	end
 
   def active_for_authentication? 

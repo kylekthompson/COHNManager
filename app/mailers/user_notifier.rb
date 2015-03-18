@@ -18,4 +18,10 @@ class UserNotifier < ApplicationMailer
     mail( :to => @user.email,
     :subject => 'Friendly reminder from Team BSS' )
   end
+
+  def send_sessions_email(user)
+    @user = user
+    mail( :to => @user.email,
+    :subject => 'Friendly reminder from Team BSS' )
+  end
 end

@@ -27,14 +27,20 @@ class User < ActiveRecord::Base
       if self.paid_date.to_date > 1.month.ago
         is_paid = true
       elsif self.sessions_remaining > 0
+        is_paid = true
         @sessions = self.sessions_remaining - 1
         self.update_attributes(sessions_remaining: @sessions)
-        is_paid = true
+        if self.sessions_remaining == 1
+          UserNotifier.send_sessions_email(self).deliver_now
+        end
       end
     elsif self.sessions_remaining > 0
       is_paid = true
       @sessions = self.sessions_remaining - 1
       self.update_attributes(sessions_remaining: @sessions)
+      if self.sessions_remaining == 1
+        UserNotifier.send_sessions_email(self).deliver_now
+      end
     end
     is_paid
   end

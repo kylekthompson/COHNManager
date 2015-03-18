@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @user.first_name %>!</h1>		
+    <p>We just wanted to give you a heads up that you have 1 session remaining.</p>
+    <%= render partial: "user_notifier/shared/signature" %>
+  </body>
+</html>

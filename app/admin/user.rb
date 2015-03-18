@@ -1,8 +1,8 @@
 ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email,
-                :admin, :paid_date, :approved,
-                :sessions_remaining, gym_ids: [],
-                gym_attributes: [:id, :name, :_delete]
+                :auto_pay, :admin, :paid_date, 
+                :approved, :sessions_remaining, 
+                gym_ids: [], gym_attributes: [:id, :name, :_delete]
 
   filter :first_name
   filter :last_name
@@ -23,6 +23,7 @@ ActiveAdmin.register User do
     end
     column :paid_date
     column :sessions_remaining
+    column :auto_pay
   	column :approved
     column :admin
     actions
@@ -36,6 +37,7 @@ ActiveAdmin.register User do
     f.input :gyms, as: :check_boxes
     f.input :paid_date, as: :datepicker, datepicker_options: { min_date: "2015-01-1", max_date: "+20Y" }
     f.input :sessions_remaining
+    f.input :auto_pay
     f.input :approved
  		f.input :admin
  		f.actions
@@ -51,6 +53,7 @@ ActiveAdmin.register User do
       end
       row :paid_date
       row :sessions_remaining
+      row :auto_pay
       row :approved
       row :admin
     end

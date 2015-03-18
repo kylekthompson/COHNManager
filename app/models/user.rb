@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def auto_pay?
+    self.auto_pay
+  end
+
 	def adjust_user
     self.first_name = self.first_name.slice(0,1).capitalize + self.first_name.slice(1..-1)
     self.last_name = self.last_name.slice(0,1).capitalize + self.last_name.slice(1..-1)

@@ -28,7 +28,7 @@ class UserNotifier < ApplicationMailer
   def send_unpaid_text(user)
     @user = user
     User.all.each do |admin|
-      if admin.is_admin? && admin.receives_notifications?
+      if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
         @phone = admin.cell_phone_number.gsub(/[^0-9]/, "")
         @carrier = admin.carrier
         address = nil
@@ -63,7 +63,7 @@ class UserNotifier < ApplicationMailer
   def send_wrong_gym_text(user)
     @user = user
     User.all.each do |admin|
-      if admin.is_admin? && admin.receives_notifications?
+      if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
         @phone = admin.cell_phone_number.gsub(/[^0-9]/, "")
         @carrier = admin.carrier
         address = nil

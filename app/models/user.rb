@@ -60,6 +60,14 @@ class User < ActiveRecord::Base
   def receives_notifications?
     self.notifications
   end
+
+  def has_cell_phone_number?
+    has_number = false
+    if self.cell_phone_number.to_i > 0
+      has_number = true
+    end
+    has_number
+  end
   
   def auto_pay?
     self.auto_pay

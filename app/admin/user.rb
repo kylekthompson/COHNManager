@@ -10,24 +10,24 @@ ActiveAdmin.register User do
   filter :email
   filter :sessions_remaining
   filter :gyms
+  filter :auto_pay
   filter :approved
   filter :admin
   filter :paid_date
 
   index do
   	selectable_column
-  	column :first_name
-  	column :last_name
+  	column "First", :first_name
+    column "Last", :last_name
   	column :email
     column "Gyms" do |user|
       user.gyms.sort.map{ |g| g.name }.join(', ')
     end
     column :paid_date
-    column :sessions_remaining
+    column "Sessions", :sessions_remaining
     column :auto_pay
   	column :approved
     column :admin
-    column :notifications
     actions
   end
 
@@ -48,8 +48,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
-      row :first_name
-      row :last_name
+      row :full_name
       row :email
       row "Gyms" do |user|
         user.gyms.sort.map{ |g| g.name }.join(', ')

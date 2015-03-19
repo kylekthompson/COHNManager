@@ -23,9 +23,20 @@ class User < ActiveRecord::Base
 
   def is_paid_at_login?
     is_paid = false
-    if self.paid_date
-      if self.paid_date.to_date > 1.month.ago
-        is_paid = true
+    if auto_pay?
+      is_paid = true
+    else
+      if self.paid_date
+        if self.paid_date.to_date > 1.month.ago
+          is_paid = true
+        elsif self.sessions_remaining > 0
+          is_paid = true
+          @sessions = self.sessions_remaining - 1
+          self.update_attributes(sessions_remaining: @sessions)
+          if self.sessions_remaining == 1
+            UserNotifier.send_sessions_email(self).deliver_now
+          end
+        end
       elsif self.sessions_remaining > 0
         is_paid = true
         @sessions = self.sessions_remaining - 1
@@ -33,13 +44,6 @@ class User < ActiveRecord::Base
         if self.sessions_remaining == 1
           UserNotifier.send_sessions_email(self).deliver_now
         end
-      end
-    elsif self.sessions_remaining > 0
-      is_paid = true
-      @sessions = self.sessions_remaining - 1
-      self.update_attributes(sessions_remaining: @sessions)
-      if self.sessions_remaining == 1
-        UserNotifier.send_sessions_email(self).deliver_now
       end
     end
     is_paid
@@ -53,6 +57,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def receieves_notifications?
+    self.notifications
+  end
+  
   def auto_pay?
     self.auto_pay
   end

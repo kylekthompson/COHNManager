@@ -2,7 +2,8 @@ ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email,
                 :auto_pay, :admin, :paid_date, 
                 :approved, :sessions_remaining, 
-                gym_ids: [], gym_attributes: [:id, :name, :_delete]
+                :notifications, gym_ids: [], 
+                gym_attributes: [:id, :name, :_delete]
 
   filter :first_name
   filter :last_name
@@ -26,6 +27,7 @@ ActiveAdmin.register User do
     column :auto_pay
   	column :approved
     column :admin
+    #column :notifications
     actions
   end
 
@@ -40,6 +42,7 @@ ActiveAdmin.register User do
     f.input :auto_pay
     f.input :approved
  		f.input :admin
+    #f.input :notifications
  		f.actions
  	end
 
@@ -56,6 +59,7 @@ ActiveAdmin.register User do
       row :auto_pay
       row :approved
       row :admin
+      row :notifications
     end
   end
 

@@ -27,7 +27,7 @@ ActiveAdmin.register User do
     column :auto_pay
   	column :approved
     column :admin
-    #column :notifications
+    column :notifications
     actions
   end
 
@@ -42,7 +42,7 @@ ActiveAdmin.register User do
     f.input :auto_pay
     f.input :approved
  		f.input :admin
-    #f.input :notifications
+    f.input :notifications
  		f.actions
  	end
 

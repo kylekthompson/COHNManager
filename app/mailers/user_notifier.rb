@@ -1,5 +1,5 @@
 class UserNotifier < ApplicationMailer
-	default to: Proc.new { User.where(admin: true).pluck(:email) },
+	default to: Proc.new { User.where(admin: true).where(notifications: true).pluck(:email) },
         from: 'teambssmanager@gmail.com'
 	
 	def send_signup_email(user)

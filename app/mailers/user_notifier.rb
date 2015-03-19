@@ -24,4 +24,74 @@ class UserNotifier < ApplicationMailer
     mail( :to => @user.email,
     :subject => 'Friendly reminder from Team BSS' )
   end
+
+  def send_unpaid_text(user)
+    @user = user
+    User.all.each do |admin|
+      if admin.is_admin? && admin.receives_notifications?
+        @phone = admin.cell_phone_number.gsub(/[^0-9]/, "")
+        @carrier = admin.carrier
+        address = nil
+        case @carrier
+        when "AT&T"
+          address = "@txt.att.net"
+        when "Verizon"
+          address = "@vtext.com"
+        when"Sprint"
+          address = "@messaging.sprintpcs.com "
+        when "T-Mobile"
+          address = "@tmomail.net"
+        when "Virgin Mobile"
+          address = "@vmobl.com"
+        when "Tracfone"
+          address = "@mmst5.tracfone.com"
+        when "Metro PCS"
+          address = "@mymetropcs.com"
+        when "Boost Mobile"
+          address = "@myboostmobile.com"
+        when "Cricket"
+          address = "@sms.mycricket.com"
+        end
+        @mailto = @phone + address
+        puts "#{@mailto}"
+        mail( :to => @mailto,
+        :subject => "Member Not Paid Alert" )
+      end
+    end
+  end
+
+  def send_wrong_gym_text(user)
+    @user = user
+    User.all.each do |admin|
+      if admin.is_admin? && admin.receives_notifications?
+        @phone = admin.cell_phone_number.gsub(/[^0-9]/, "")
+        @carrier = admin.carrier
+        address = nil
+        case @carrier
+        when "AT&T"
+          address = "@txt.att.net"
+        when "Verizon"
+          address = "@vtext.com"
+        when"Sprint"
+          address = "@messaging.sprintpcs.com "
+        when "T-Mobile"
+          address = "@tmomail.net"
+        when "Virgin Mobile"
+          address = "@vmobl.com"
+        when "Tracfone"
+          address = "@mmst5.tracfone.com"
+        when "Metro PCS"
+          address = "@mymetropcs.com"
+        when "Boost Mobile"
+          address = "@myboostmobile.com"
+        when "Cricket"
+          address = "@sms.mycricket.com"
+        end
+        @mailto = @phone + address
+        puts "#{@mailto}"
+        mail( :to => @mailto,
+        :subject => "Incorrect Gym Alert" )
+      end
+    end
+  end
 end

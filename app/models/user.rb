@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def receieves_notifications?
+  def receives_notifications?
     self.notifications
   end
   

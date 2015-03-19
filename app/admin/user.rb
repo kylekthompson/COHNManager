@@ -2,7 +2,8 @@ ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email,
                 :auto_pay, :admin, :paid_date, 
                 :approved, :sessions_remaining, 
-                :notifications, gym_ids: [], 
+                :notifications, :cell_phone_number,
+                :carrier, gym_ids: [], 
                 gym_attributes: [:id, :name, :_delete]
 
   filter :first_name
@@ -36,6 +37,8 @@ ActiveAdmin.register User do
     f.input :first_name
  		f.input :last_name
  		f.input :email
+    f.input :cell_phone_number, as: :phone
+    f.input :carrier, as: :select, collection: ["AT&T", "Verizon", "Sprint", "T-Mobile", "Virgin Mobile", "Tracfone", "Metro PCS", "Boost Mobile", "Cricket"]
     f.input :gyms, as: :check_boxes
     f.input :paid_date, as: :datepicker, datepicker_options: { min_date: "2015-01-1", max_date: "+20Y" }
     f.input :sessions_remaining
@@ -50,6 +53,8 @@ ActiveAdmin.register User do
     attributes_table do
       row :full_name
       row :email
+      row :cell_phone_number
+      row :carrier
       row "Gyms" do |user|
         user.gyms.sort.map{ |g| g.name }.join(', ')
       end

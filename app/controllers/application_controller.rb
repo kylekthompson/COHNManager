@@ -24,9 +24,11 @@ class ApplicationController < ActionController::Base
 					if current_user.is_paid_at_login?
 						paid_path
 					else
+						UserNotifier.send_unpaid_text(current_user).deliver_now
 						unpaid_path
 					end
 				else
+					UserNotifier.send_wrong_gym_text(current_user).deliver_now
 					incorrectgym_path
 				end
 			else

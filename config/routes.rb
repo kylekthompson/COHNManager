@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'unpaid' => 'pages#unpaid'
   get 'incorrectgym' => 'pages#incorrectgym'
   get 'setgympage' => 'pages#setgympage'
+  get 'waiver' => 'pages#waiver'
   post 'setgym' => 'pages#setgym'
   get 'pay' => redirect("http://www.teambssfitness.com/join-us/")
 end

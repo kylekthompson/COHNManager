@@ -17,6 +17,9 @@ class PagesController < ApplicationController
   	@gyms = Gym.all
   end
 
+  def waiver
+  end
+  
   def setgym
   	cookies[:gym_id] = {
   		value: params[:gym_id],

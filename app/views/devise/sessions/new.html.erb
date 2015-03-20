@@ -17,7 +17,7 @@
     <div class="form-group text-center waiver-check">
       <%= f.check_box :agreed_to_waiver %>
       <%= f.label :agreed_to_waiver, 'I have read and fully understand ', autocomplete: "off", class: "control-label" %>
-      <a class="show_hide">the agreement</a>.
+      <%= link_to 'the agreement', waiver_path %>.
     </div>
 
     <div class="waiver" style="display:none">

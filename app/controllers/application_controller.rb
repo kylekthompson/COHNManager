@@ -24,11 +24,19 @@ class ApplicationController < ActionController::Base
 					if current_user.is_paid_at_login?
 						paid_path
 					else
-						UserNotifier.send_unpaid_text(current_user).deliver_now
+						User.all.each do |admin|
+					    if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
+					    	UserNotifier.send_unpaid_text(current_user, admin).deliver_now
+					    end
+					 	end
 						unpaid_path
 					end
 				else
-					UserNotifier.send_wrong_gym_text(current_user).deliver_now
+					User.all.each do |admin|
+				    if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
+				    	UserNotifier.send_wrong_gym(current_user, admin).deliver_now
+				    end
+				 	end
 					incorrectgym_path
 				end
 			else
@@ -52,7 +60,7 @@ class ApplicationController < ActionController::Base
 		@login.was_correct_gym = correct_gym?
 		@login.save!
 	end
-
+	
 	def correct_gym?
     correct = false
     @gyms = current_user.gyms.all

@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
     has_number
   end
   
+  def cell_number
+    self.cell_phone_number
+  end
+
   def auto_pay?
     self.auto_pay
   end

@@ -50,11 +50,21 @@ class User < ActiveRecord::Base
   end
 
   def is_paid?
-    if self.paid_date
-      (self.paid_date.to_date > 1.month.ago) || (self.sessions_remaining > 0)
+    is_paid = false
+    if auto_pay?
+      is_paid = true
     else
-      self.sessions_remaining > 0
+      if self.paid_date
+        if self.paid_date.to_date > 1.month.ago
+          is_paid = true
+        elsif self.sessions_remaining > 0
+          is_paid = true
+        end
+      elsif self.sessions_remaining > 0
+        is_paid = true
+      end
     end
+    is_paid
   end
 
   def receives_notifications?

@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 				else
 					User.all.each do |admin|
 				    if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
-				    	UserNotifier.send_wrong_gym(current_user, admin).deliver_now
+				    	UserNotifier.send_wrong_gym_text(current_user, admin).deliver_now
 				    end
 				 	end
 					incorrectgym_path

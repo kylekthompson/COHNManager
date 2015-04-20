@@ -12,7 +12,7 @@ namespace :scheduler do
 		  	end
 		  end
 	  end
-	  puts "done."
+	  puts "Done."
 	end
 
 	desc "Adjust auto pay paid date"
@@ -29,6 +29,26 @@ namespace :scheduler do
 		  	end
 		  end
 	  end
-	  puts "done."
+	  puts "Done."
+	end
+
+	desc "Send three days late texts"
+	task send_three_days_text: :environment do
+	  puts "Sending texts..."
+	  User.all.each do |user|
+			if user.paid_date
+		  	@due_date = user.paid_date.to_date + 1.month
+		  	@current_date = Date.today
+		  	if ((@current_date - @due_date == 3) && (user.auto_pay? == false))
+		  		User.all.each do |admin|
+				    if admin.is_admin? && admin.receives_notifications? && admin.has_cell_phone_number?
+				    	puts("Sending texts to #{admin.full_name}")
+				    	UserNotifier.send_three_days_text(user, admin).deliver_now
+				    end
+				 	end
+		  	end
+		  end
+	  end
+	  puts "Done."
 	end
 end

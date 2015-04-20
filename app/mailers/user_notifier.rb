@@ -56,6 +56,37 @@ class UserNotifier < ApplicationMailer
     :subject => "Member Not Paid Alert" )
   end
 
+  def send_three_days_text(user, admin)
+    @user = user
+    @admin = admin
+    @phone = @admin.cell_number.gsub(/[^0-9]/, "")
+    @carrier = @admin.carrier
+    address = nil
+    case @carrier
+    when "AT&T"
+      address = "@txt.att.net"
+    when "Verizon"
+      address = "@vtext.com"
+    when"Sprint"
+      address = "@messaging.sprintpcs.com "
+    when "T-Mobile"
+      address = "@tmomail.net"
+    when "Virgin Mobile"
+      address = "@vmobl.com"
+    when "Tracfone"
+      address = "@mmst5.tracfone.com"
+    when "Metro PCS"
+      address = "@mymetropcs.com"
+    when "Boost Mobile"
+      address = "@myboostmobile.com"
+    when "Cricket"
+      address = "@sms.mycricket.com"
+    end
+    @mailto = @phone + address
+    mail( :to => @mailto,
+    :subject => "Three Days Late Alert" )
+  end
+
   def send_wrong_gym_text(user, admin)
     @user = user
     @admin = admin

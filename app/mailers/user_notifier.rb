@@ -1,11 +1,11 @@
 class UserNotifier < ApplicationMailer
 	default to: Proc.new { User.where(admin: true).where(notifications: true).pluck(:email) },
-        from: 'teambssmanager@gmail.com'
+        from: 'cohnmanager@gmail.com'
 	
 	def send_signup_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Thanks for signing up for Team BSS Manager' )
+    :subject => 'Thanks for signing up for COHN CrossFit Manager' )
   end
 
   def send_user_waiting_for_approval_email(user)
@@ -16,13 +16,13 @@ class UserNotifier < ApplicationMailer
   def send_dues_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Friendly reminder from Team BSS' )
+    :subject => 'Friendly reminder from COHN CrossFit' )
   end
 
   def send_sessions_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Friendly reminder from Team BSS' )
+    :subject => 'Friendly reminder from COHN CrossFit' )
   end
 
   def send_unpaid_text(user, admin)

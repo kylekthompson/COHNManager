@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: db/teambssmanager_development
+  database: db/cohnmanager_development
 
 test:
   <<: *default
-  database: db/teambssmanager_test
+  database: db/cohnmanager_test
 
 production:
   <<: *default
-  database: db/teambssmanager
+  database: db/cohnmanager

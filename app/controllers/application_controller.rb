@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 		if current_user.is_admin?
 			if cookies[:gym_id]
 				admin_root_path
+			elsif is_topher?
+				admin_root_path
 			else
 				setgympage_path
 			end
@@ -70,5 +72,13 @@ class ApplicationController < ActionController::Base
       end
     end
     correct
+  end
+
+  def is_topher?
+  	if current_user.email == "tophercrna@yahoo.com"
+  		true
+  	else
+  		false
+  	end
   end
 end

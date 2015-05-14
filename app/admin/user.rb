@@ -29,7 +29,10 @@ ActiveAdmin.register User do
     column :auto_pay
   	column :approved
     column :admin
-    actions
+    actions do |user|
+      # Link to perform the member_action, "reset_password" defined below
+      link_to("Reset Password", reset_password_admin_user_path(user))
+    end
   end
 
  	form do |f|
@@ -65,6 +68,21 @@ ActiveAdmin.register User do
       row :admin
       row :notifications
     end
+  end
+
+  member_action :reset_password do
+    # Find the user in question
+    user = User.find(params[:id])
+
+    # Call the method (from Devise) which sends them a password reset email
+    user.send_reset_password_instructions
+
+    #Sign out
+    sign_out current_user
+
+    # Redirect back to the user's page with a confirmation
+    redirect_to(root_path,
+      notice: "Password reset email sent to #{user.email}")
   end
 
 end

@@ -29,10 +29,11 @@ ActiveAdmin.register User do
     column :auto_pay
   	column :approved
     column :admin
-    actions do |user|
+    actions
+    #actions do |user|
       # Link to perform the member_action, "reset_password" defined below
-      link_to("Reset Password", reset_password_admin_user_path(user))
-    end
+    #  link_to("Reset Password", reset_password_admin_user_path(user))
+    #end
   end
 
  	form do |f|

@@ -18,6 +18,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.bottom-right {
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	right: 0;
+}
+
 .buttons {
 	padding-bottom: 55px;
 }

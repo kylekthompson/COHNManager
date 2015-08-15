@@ -1,16 +1,14 @@
 ActiveAdmin.register User do
   permit_params :first_name, :last_name, :email,
-                :auto_pay, :admin, :paid_date, 
-                :approved, :sessions_remaining, 
+                :auto_pay, :admin, :paid_date,
+                :approved, :sessions_remaining,
                 :notifications, :cell_phone_number,
-                :carrier, gym_ids: [], 
-                gym_attributes: [:id, :name, :_delete]
+                :carrier
 
   filter :first_name
   filter :last_name
   filter :email
   filter :sessions_remaining
-  filter :gyms
   filter :auto_pay
   filter :approved
   filter :admin
@@ -21,9 +19,6 @@ ActiveAdmin.register User do
   	column "First", :first_name
     column "Last", :last_name
   	column :email
-    column "Gyms" do |user|
-      user.gyms.sort.map{ |g| g.name }.join(', ')
-    end
     column :paid_date
     column "Sessions", :sessions_remaining
     column :auto_pay
@@ -31,7 +26,7 @@ ActiveAdmin.register User do
     column :admin
     actions
     #actions do |user|
-      # Link to perform the member_action, "reset_password" defined below
+    #  Link to perform the member_action, "reset_password" defined below
     #  link_to("Reset Password", reset_password_admin_user_path(user))
     #end
   end
@@ -43,7 +38,6 @@ ActiveAdmin.register User do
  		f.input :email
     f.input :cell_phone_number, as: :phone
     f.input :carrier, as: :select, collection: ["AT&T", "Verizon", "Sprint", "T-Mobile", "Virgin Mobile", "Tracfone", "Metro PCS", "Boost Mobile", "Cricket"]
-    f.input :gyms, as: :check_boxes
     f.input :paid_date, as: :datepicker, datepicker_options: { min_date: "2015-01-1", max_date: "+20Y" }
     f.input :sessions_remaining
     f.input :auto_pay
@@ -59,9 +53,6 @@ ActiveAdmin.register User do
       row :email
       row :cell_phone_number
       row :carrier
-      row "Gyms" do |user|
-        user.gyms.sort.map{ |g| g.name }.join(', ')
-      end
       row :paid_date
       row :sessions_remaining
       row :auto_pay

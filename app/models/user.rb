@@ -3,13 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  
+
   validates :first_name, :last_name, :email, presence: true
 
-  has_and_belongs_to_many :gyms
   has_many :logins, dependent: :destroy
-  accepts_nested_attributes_for :gyms, allow_destroy: true
-  
+
   before_save :adjust_user
   after_create :send_signup_email
 
@@ -78,7 +76,7 @@ class User < ActiveRecord::Base
     end
     has_number
   end
-  
+
   def cell_number
     self.cell_phone_number
   end
@@ -93,14 +91,14 @@ class User < ActiveRecord::Base
     self.full_name = "#{first_name} #{last_name}"
 	end
 
-  def active_for_authentication? 
+  def active_for_authentication?
     super && is_approved?
-  end 
+  end
 
-  def inactive_message 
-    if !is_approved? 
-      :not_approved 
-    else 
+  def inactive_message
+    if !is_approved?
+      :not_approved
+    else
       super
     end
   end

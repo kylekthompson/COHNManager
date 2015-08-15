@@ -18,13 +18,14 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Gyms" do
-          table_for Gym.order("created_at desc").limit(10) do
-            column :name do |gym|
-              link_to gym.name, [:admin, gym]
+        panel "Logins" do
+          table_for Login.order("logged_in_at desc").limit(10) do
+            column :full_name do |login|
+              link_to login.user.full_name, [:admin, login]
             end
+            column :logged_in_at
           end
-          strong { link_to "View All Gyms", admin_gyms_path }
+          strong { link_to "View All Logins", admin_logins_path }
         end
       end
     end

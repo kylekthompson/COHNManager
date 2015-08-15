@@ -20,4 +20,14 @@ ActiveAdmin.register Login do
     column :was_paid
   end
 
+  show do
+    attributes_table do
+      row :user
+      row "Logged In At" do |login|
+        login.logged_in_at.in_time_zone('Eastern Time (US & Canada)')
+      end
+      row :was_approved
+      row :was_paid
+    end
+  end
 end

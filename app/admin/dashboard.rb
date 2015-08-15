@@ -23,7 +23,9 @@ ActiveAdmin.register_page "Dashboard" do
             column :full_name do |login|
               link_to login.user.full_name, [:admin, login]
             end
-            column :logged_in_at
+            column :logged_in_at do |login|
+              login.logged_in_at.in_time_zone('Eastern Time (US & Canada)')
+            end
           end
           strong { link_to "View All Logins", admin_logins_path }
         end

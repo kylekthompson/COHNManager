@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get 'setgympage' => 'pages#setgympage'
   get 'waiver' => 'pages#waiver'
   post 'setgym' => 'pages#setgym'
-  get 'pay' => redirect("https://www.cohncrossfit.com/join-us/")
+  get 'pay' => redirect("https://crossfit6817.com/shop/")
 end

@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def new
   	super
@@ -23,6 +23,6 @@ class Users::SessionsController < Devise::SessionsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :agreed_to_waiver) }
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :agreed_to_waiver])
   end
 end

@@ -5,7 +5,7 @@ class UserNotifier < ApplicationMailer
 	def send_signup_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Thanks for signing up for COHN CrossFit Manager' )
+    :subject => 'Thanks for signing up for CrossFit 6817 Manager' )
   end
 
   def send_user_waiting_for_approval_email(user)
@@ -16,13 +16,13 @@ class UserNotifier < ApplicationMailer
   def send_dues_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Friendly reminder from COHN CrossFit' )
+    :subject => 'Friendly reminder from CrossFit 6817' )
   end
 
   def send_sessions_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Friendly reminder from COHN CrossFit' )
+    :subject => 'Friendly reminder from CrossFit 6817' )
   end
 
   def send_unpaid_text(user, admin)
